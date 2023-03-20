@@ -1,13 +1,13 @@
 spring:
   mail:
-    host: smtp.gmail.com
-    port: 587
-    username: kati.bar.javastart@gmail.com
-    password: javastartKati
-    properties:
-      mail.smtp.ssl.enable: true
-      smtp:
-        auth: true
+    host: mailpit.javastart.pl
+    port: 1025
+#    username: kati.bar.javastart@gmail.com
+#    password: javastartKati
+#    properties:
+#      mail.smtp.ssl.enable: true
+#      smtp:
+#        auth: true
 
 
 

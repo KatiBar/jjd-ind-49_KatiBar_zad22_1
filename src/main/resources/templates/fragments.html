@@ -2,7 +2,8 @@
 <html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <body>
 <header th:fragment="header">
-    <img src="../static/images/logo.jpg" th:src="@{/images/logo.jpg}" alt="Logo firmy">
+    <img src="../static/images/logo.jpg" style="height: 100px; width: 100%; object-fit: cover"
+         th:src="@{/images/logo.jpg}" alt="Logo firmy">
     <nav class="headerNavi">
         <ul>
             <li class="active1">

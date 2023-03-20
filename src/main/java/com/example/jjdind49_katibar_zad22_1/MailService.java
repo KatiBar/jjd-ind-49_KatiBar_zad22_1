@@ -12,30 +12,31 @@ import org.springframework.stereotype.Service;
 public class MailService {
     private static final Logger logger = LoggerFactory.getLogger(MailService.class);
     private final JavaMailSender mailSender;
+    static final String RECEIVER_EMAIL = "kati.bar.javastart@gmail.com";
 
     public MailService(JavaMailSender mailSender) {
         this.mailSender = mailSender;
     }
 
-    public void sendMail(String senderEmail, String receiverEmail, String content, String title) {
-        logger.debug("Wysyłam maila do {}", receiverEmail);
+    public void sendMail(String senderEmail, String content, String title) {
+        logger.debug("Wysyłam maila do {}", RECEIVER_EMAIL);
 
         try {
             MimeMessage mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
 
             helper.setReplyTo(senderEmail);
-            helper.setFrom(senderEmail);
-            helper.setSubject(title);
-            helper.setText(content, true);
-            helper.setTo(receiverEmail);
+            helper.setFrom(RECEIVER_EMAIL);
+            helper.setSubject("Nowa wiadomość ze strony: " + title);
+            helper.setText("Treść wiadomości: \n" + content, true);
+            helper.setTo(RECEIVER_EMAIL);
 
             mailSender.send(mimeMessage);
         } catch (MessagingException e) {
             e.printStackTrace();
-            logger.warn("Błąd podczas wysyłania wiadomości do {}", receiverEmail);
+            logger.warn("Błąd podczas wysyłania wiadomości do {}", RECEIVER_EMAIL);
         }
 
-        logger.debug("Mail do {} wysłany poprawnie", receiverEmail);
+        logger.debug("Mail do {} wysłany poprawnie", RECEIVER_EMAIL);
     }
 }

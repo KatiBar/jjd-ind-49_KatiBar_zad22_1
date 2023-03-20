@@ -12,7 +12,6 @@ import java.util.Collection;
 public class MainController {
     private final OfferRepository offerRepository;
     private final MailService mailService;
-    private static final String receiverEmail = "kati.bar.javastart@gmail.com";
 
     public MainController(OfferRepository offerRepository, MailService mailService) {
         this.offerRepository = offerRepository;
@@ -40,7 +39,7 @@ public class MainController {
     String sendEmail(@RequestParam (name = "email") String senderEmail,
                      @RequestParam (name = "content") String content,
                      @RequestParam (name = "title") String title) {
-        mailService.sendMail(senderEmail, receiverEmail, content, title);
+        mailService.sendMail(senderEmail, content, title);
         return "index";
     }
 
