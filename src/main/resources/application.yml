@@ -1,0 +1,16 @@
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: kati.bar.javastart@gmail.com
+    password: javastartKati
+    properties:
+      mail.smtp.ssl.enable: true
+      smtp:
+        auth: true
+
+
+
+logging:
+  level:
+    com.example.jjdind49_katibar_zad22_1: debug
