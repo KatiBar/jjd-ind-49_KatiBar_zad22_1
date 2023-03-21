@@ -39,10 +39,21 @@ public class MainController {
     String sendEmail(@RequestParam (name = "email") String senderEmail,
                      @RequestParam (name = "content") String content,
                      @RequestParam (name = "title") String title) {
-        mailService.sendMail(senderEmail, content, title);
-        return "index";
+        boolean sendingStatus = mailService.sendMail(senderEmail, content, title);
+        if (sendingStatus) {
+            return "redirect:/emailStatusOK";
+        } else {
+            return "redirect:/emailStatusNG";
+        }
     }
 
+    @GetMapping("/emailStatusOK")
+    public String showOkResponse() {
+        return "emailStatusOK";
+    }
 
-
+    @GetMapping("/emailStatusNG")
+    public String showNgResponse() {
+        return "emailStatusNG";
+    }
 }

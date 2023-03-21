@@ -18,25 +18,39 @@ public class MailService {
         this.mailSender = mailSender;
     }
 
-    public void sendMail(String senderEmail, String content, String title) {
-        logger.debug("Wysyłam maila do {}", RECEIVER_EMAIL);
+    public boolean sendMail(String senderEmail, String content, String title) {
+        boolean emailSentResponse = false;
+        boolean emailSentToReceiver = sendingEmail(senderEmail,RECEIVER_EMAIL, content, title);
+
+        if (emailSentToReceiver) {
+            emailSentResponse = sendingEmail(RECEIVER_EMAIL, senderEmail,
+                    "Wiadomość dostarczona. Dziękujemy za kontakt, odezwiemy się najszybciej, jak to możliwe." +
+                            "Pozdrawiamy, Kath Automation", "Potwierdzenie dostarczenia wiadomości");
+        }
+        return emailSentResponse;
+    }
+
+    private boolean sendingEmail(String senderEmail, String receiverEmail, String content, String title) {
+        boolean result = false;
+        logger.debug("Wysyłam maila do {}", receiverEmail);
 
         try {
             MimeMessage mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
 
             helper.setReplyTo(senderEmail);
-            helper.setFrom(RECEIVER_EMAIL);
+            helper.setFrom(receiverEmail);
             helper.setSubject("Nowa wiadomość ze strony: " + title);
             helper.setText("Treść wiadomości: \n" + content, true);
-            helper.setTo(RECEIVER_EMAIL);
+            helper.setTo(receiverEmail);
 
             mailSender.send(mimeMessage);
+            result = true;
         } catch (MessagingException e) {
             e.printStackTrace();
-            logger.warn("Błąd podczas wysyłania wiadomości do {}", RECEIVER_EMAIL);
+            logger.warn("Błąd podczas wysyłania wiadomości do {}", receiverEmail);
         }
-
-        logger.debug("Mail do {} wysłany poprawnie", RECEIVER_EMAIL);
+        logger.debug("Mail do {} wysłany poprawnie", receiverEmail);
+        return result;
     }
 }
