@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<body>
+<header th:fragment="header">
+    <img src="../static/images/logo.jpg" style="height: 100px; width: 100%; object-fit: cover"
+         th:src="@{/images/logo.jpg}" alt="Logo firmy">
+    <nav class="headerNavi">
+        <ul>
+            <li class="active1">
+                <a href="/">Strona główna</a>
+            </li>
+            <li>
+                <a href="/aboutUs">O nas</a>
+            </li>
+            <li>
+                <a href="/contactUs">Kontakt</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="headerTitle">
+        <h1>Kath Automation</h1>
+        <h2>Twój Partner dla automatyki przemysłowej</h2>
+    </div>
+</header>
+
+<footer th:fragment="footer">
+    <p class="footer">Kath Automation - all rights reserved</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+</head>
+<body>
+<main layout:fragment="content">
+    <div class="contactBodyTitle">
+        <h2>Formularz kontaktowy</h2>
+        <p>Jesteś zainteresowany współpracą albo masz jakiekolwiek pytania?</p>
+        <p>Wypełnij poniższy formularz, a na pewno się z Tobą skontaktujemy.</p>
+    </div>
+
+    <div>
+        <form class="contactForm" method="post" action="/contactUs">
+            <div class="form-group1">
+                <div>
+                    <label for="email">E-mail wysyłającego:</label>
+                </div>
+                <input type="text" style="width: 300px" id="email" name="email" placeholder="j.kowalski@email.com" required>
+            </div>
+            <div class="form-group1">
+                <div>
+                    <label for="title">Tytuł wiadomości:</label>
+                </div>
+                <input type="text" style="width: 300px" id="title" name="title" placeholder="Tytuł wiadomości..." required>
+            </div>
+            <div class="form-group1">
+                <div>
+                    <label for="content">Treść wiadomości:</label>
+                </div>
+                <textarea id="content" name="content" style="width: 300px" placeholder="Napisz wiadomość..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-warning">Wyślij</button>
+        </form>
+    </div>
+</main>
+</body>
+</html>
